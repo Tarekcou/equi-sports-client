@@ -1,11 +1,109 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect, useState } from "react";
+import { auth } from "../firebase/firebase.config";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-export const AuthContext = createContext(null);
-const AuthProvider = ({children}) => {
+import { GoogleAuthProvider } from "firebase/auth";
+
+export const AuthContext = createContext();
+const AuthProvider = ({ children }) => {
+  const [isLoading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [imageKey, setimageKey] = useState(1);
+  const provider = new GoogleAuthProvider();
+
+  // const navigate=useNavigate()
+
+  const registerWithEmail = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const signedIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+  const googleLogin = () => {
+    return signInWithPopup(auth, provider);
+  };
+
+  const logOut = () => {
+    setLoading(true);
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        setUser(null);
+        setLoading(false);
+        // navigate("/")
+
+        console.log("sign Out", auth);
+      })
+      .catch((error) => {
+        // An error happened.
+        setLoading(false);
+      });
+  };
+  const updateUserProfile = (
+    name = "James",
+    Url = "https://cdn-icons-png.flaticon.com/512/7084/7084424.png"
+  ) => {
+    setLoading(true);
+    console.log(name, Url);
+    updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: Url,
+    })
+      .then((e) => {
+        // Profile updated!
+        console.log("profile", e);
+        // ...
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+      });
+  };
+  const passwordReset = (resetEmail) => {
+    return sendPasswordResetEmail(auth, resetEmail);
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setLoading(true);
+      if (user) {
+        setUser(user);
+        const uid = user.uid;
+        // console.log(user)
+        setLoading(false);
+        setimageKey((pre) => pre + 1);
+      } else {
+        setLoading(false);
+      }
+    });
+  }, []);
+  const authData = {
+    registerWithEmail,
+    isLoading,
+    setLoading,
+    user,
+    setUser,
+    logOut,
+    signedIn,
+    googleLogin,
+    updateUserProfile,
+    passwordReset,
+    imageKey,
+    setimageKey,
+  };
   return (
-    <AuthContext.Provider>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>
   );
 };
 

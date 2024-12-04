@@ -1,12 +1,8 @@
-import React from 'react';
-import MainLayout from '../layout/MainLayout';
+import React from "react";
+import MainLayout from "../layout/MainLayout";
 
 const DeatailPage = () => {
-  return (
-    <MainLayout>
-      details
-    </MainLayout>
-  );
+  return <>details</>;
 };
 
 export default DeatailPage;

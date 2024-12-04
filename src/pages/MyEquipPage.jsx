@@ -1,12 +1,8 @@
-import React from 'react';
-import MainLayout from '../layout/MainLayout';
+import React from "react";
+import MainLayout from "../layout/MainLayout";
 
 const MyEquipPage = () => {
-  return (
-    <MainLayout>
-      MyEquipPage
-    </MainLayout>
-  );
+  return <div>MyEquipPage</div>;
 };
 
 export default MyEquipPage;

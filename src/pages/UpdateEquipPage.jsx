@@ -1,12 +1,8 @@
-import React from 'react';
-import MainLayout from '../layout/MainLayout';
+import React from "react";
+import MainLayout from "../layout/MainLayout";
 
 const UpdateEquipPage = () => {
-  return (
-    <MainLayout>
-      UpdateEquipPage
-    </MainLayout>
-  );
+  return <div>UpdateEquipPage</div>;
 };
 
 export default UpdateEquipPage;

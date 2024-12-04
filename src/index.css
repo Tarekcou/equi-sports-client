@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
 a.active {
   outline: auto;
   background-color: green;
+}
+.swiper-button-prev {
+  color: red;
+}
+
+.swiper-button-next {
+  color: #000;
 }
