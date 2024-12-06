@@ -3,9 +3,8 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa6";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import MainLayout from "../layout/MainLayout";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,12 +23,13 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     // Add your login logic here
-    console.log("Login details:", { email, password });
+    // console.log("Login details:", { email, password });
+    toast.loading("Log in Processing..");
 
     signedIn(email, password)
       .then((userCredential) => {
         // Signed in
-        toast("Log in Processing..");
+        toast.success("Loged in");
         const user = userCredential.user;
         console.log(user);
         setUser(user);
@@ -49,11 +49,12 @@ const Login = () => {
         setLoading(false);
         setErr(errorMessage);
         // console.log(error.)
+        toast.error("something went wrong" + error);
       });
   };
 
   const handleGoogleLogin = () => {
-    toast("Log in Processing...");
+    toast.success("Log in Processing...");
     googleLogin()
       .then((result) => {
         const user = result.user;
@@ -136,7 +137,7 @@ const Login = () => {
               </div>
             </div>
             {/* FOrgo pass */}
-            <Link state={{ email: email }} to={`/auth/forgot-password/`}>
+            <Link state={{ email: email }} to={`/main/auth/forgot-password/`}>
               <p
                 onClick={handleForgotPasswordClick}
                 className="my-3 text-sm underline cursor-pointer"
@@ -162,7 +163,10 @@ const Login = () => {
           </button>
           <p className="mt-4 text-center text-gray-600 text-sm">
             Don't have an account?{" "}
-            <a href="/auth/signup" className="text-blue-600 hover:underline">
+            <a
+              href="/main/auth/signup"
+              className="text-blue-600 hover:underline"
+            >
               Register here
             </a>
           </p>
@@ -176,18 +180,6 @@ const Login = () => {
           )}
         </div>
       )}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </div>
   );
 };

@@ -10,7 +10,9 @@ import SignUp from "../pages/SignUpPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import MainLayout from "../layout/MainLayout";
 import PrivateRouter from "./PrivateRouter";
-import DeatailPage from "../pages/DeatailPage";
+import AllFeatureProducts from "../pages/AllFeatureProducts";
+import CategoryWiseProducts from "../pages/CategoryWiseProducts";
+import ProductDetailsPage from "../pages/ProductDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -29,10 +31,29 @@ const router = createBrowserRouter([
         loader: () => fetch("http://localhost:5005/products"),
       },
       {
-        path: "/main/allEquipment/:id",
-        element: <DeatailPage />,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5005/products/${params.id}`),
+        path: "/main/AllFeatureProducts",
+        element: <AllFeatureProducts />,
+        loader: () => fetch("http://localhost:5005/products"),
+      },
+      {
+        path: "/main/productDetails/:id",
+        element: <ProductDetailsPage />,
+        loader: ({ params }) => {
+          console.log(params.id);
+          return fetch(`http://localhost:5005/products/${params.id}`);
+        },
+      },
+      {
+        path: "/main/category/:categoryName",
+        element: <CategoryWiseProducts />,
+        loader: ({ params }) => {
+          const categoryName = params.categoryName;
+          console.log(categoryName);
+
+          const link = `http://localhost:5005/category/${categoryName}`;
+          console.log(link);
+          return fetch(link);
+        },
       },
       {
         path: "/main/addEquipment",
@@ -41,6 +62,42 @@ const router = createBrowserRouter([
             <AddEquipPage />
           </PrivateRouter>
         ),
+      },
+      {
+        path: "/main/addEquipment/:id",
+        element: (
+          <PrivateRouter>
+            <AddEquipPage />
+          </PrivateRouter>
+        ),
+        loader: async ({ params }) => {
+          // console.log(params.id);
+          if (params?.id) {
+            const res = await fetch(
+              `http://localhost:5005/products/${params.id}`
+            );
+            const data = await res.json();
+            console.log(data);
+            return data;
+          }
+        },
+      },
+      {
+        path: "/main/myEquipment/:email",
+        element: (
+          <PrivateRouter>
+            <MyEquipPage />
+          </PrivateRouter>
+        ),
+        loader: async ({ params }) => {
+          console.log(params.email);
+          const res = await fetch(
+            `http://localhost:5005/myEquipment/${params.email}`
+          );
+          const data = await res.json();
+          console.log(data);
+          return data;
+        },
       },
       {
         path: "/main/myEquipment",

@@ -17,11 +17,13 @@
     "react": "^18.3.1",
     "react-awesome-slider": "^4.1.0",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.4.1",
+    "react-icon": "^1.0.0",
     "react-icons": "^5.4.0",
     "react-router-dom": "^7.0.2",
     "react-toastify": "^10.0.6",
-    "sort-by": "^1.2.0",
-    "sweetalert2": "^11.14.5",
+    "sort-by": "^0.0.2",
+    "sweetalert2": "^11.6.13",
     "swiper": "^11.1.15"
   },
   "devDependencies": {

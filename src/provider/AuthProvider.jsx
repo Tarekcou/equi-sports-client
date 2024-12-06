@@ -12,6 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import { GoogleAuthProvider } from "firebase/auth";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
@@ -20,7 +21,7 @@ const AuthProvider = ({ children }) => {
   const [imageKey, setimageKey] = useState(1);
   const provider = new GoogleAuthProvider();
 
-  // const navigate=useNavigate()
+  // const navigate = useNavigate();
 
   const registerWithEmail = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -33,18 +34,24 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
+    toast.loading("Sign out Processing..");
+
     setLoading(true);
     signOut(auth)
       .then(() => {
         // Sign-out successful.
         setUser(null);
         setLoading(false);
-        // navigate("/")
+        // navigate("/");
+        toast.error("Sign out!");
 
-        console.log("sign Out", auth);
+        // console.log("sign Out", auth);
       })
       .catch((error) => {
         // An error happened.
+        toast.error("Something went wrong" + error);
+        console.log(error);
+
         setLoading(false);
       });
   };
@@ -53,7 +60,10 @@ const AuthProvider = ({ children }) => {
     Url = "https://cdn-icons-png.flaticon.com/512/7084/7084424.png"
   ) => {
     setLoading(true);
-    console.log(name, Url);
+    // console.log(name, Url);
+
+    toast.loading("profile updating..");
+
     updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: Url,
@@ -62,11 +72,14 @@ const AuthProvider = ({ children }) => {
         // Profile updated!
         console.log("profile", e);
         // ...
+        toast.success("profile updated");
 
         setLoading(false);
       })
       .catch((error) => {
         // An error occurred
+        toast.error("Something went wrong" + error);
+
         // ...
       });
   };

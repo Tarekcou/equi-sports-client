@@ -75,9 +75,6 @@ export default () => {
               backgroundImage: `url(${slide.img})`,
             }}
           >
-            <div className="top-3 absolute w-full">
-              <Navbar />
-            </div>
             <div className="flex flex-col justify-center items-center gap-16 w-10/12 lg:w-6/12 text-center text-white">
               <h1 className="font-bold text-2xl text-white md:text-6xl">
                 {slide.title}

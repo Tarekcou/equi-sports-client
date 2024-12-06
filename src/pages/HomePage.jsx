@@ -13,16 +13,19 @@ import { useLoaderData } from "react-router-dom";
 
 const HomePage = () => {
   const products = useLoaderData();
-  console.log(products);
+  // console.log(products);
   return (
-    <div>
+    <div className="relative">
+      <div className="z-10 absolute w-full">
+        <Navbar />
+      </div>
       <Hero />
       <div className="min-h-screen">
         <PopularCategories />
         <TrendingProducts products={products} />
         <Features />
 
-        <FeatureProducts />
+        <FeatureProducts products={products} />
         <CustomerFeedback />
         <NewsletterSubscription />
       </div>

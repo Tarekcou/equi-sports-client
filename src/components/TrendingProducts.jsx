@@ -1,6 +1,7 @@
 import ProductCard from "./ProductCard";
 import React from "react";
 import "swiper/css";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -64,37 +65,48 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // ];
 
 const TrendingProducts = ({ products }) => (
-  <div className="p-8">
-    <h2 className="mb-6 font-bold text-2xl text-center">
-      Top Trending Products
-    </h2>
-    <p className="mb-10 text-center text-gray-500">
-      There are many variations of passages of lorem ipsum available
-    </p>
+  <div className="shadow-md mx-auto mt-5 p-8">
+    <div className="flex justify-center items-center gap-3">
+      <FaMoneyBillTrendUp className="text-5xl text-green-500" />
+      <h2 className="font-bold text-3xl text-center">Top Trending Products</h2>
+    </div>
 
-    <Swiper
-      // install Swiper modules
-      modules={[Autoplay, Navigation, Pagination]}
-      navigation
-      centeredSlides={false}
-      loop={true}
-      slidesPerView={4}
-      // autoplay={{
-      //   delay: 2500,
-      //   disableOnInteraction: false,
-      // }}
-      // pagination={{ clickable: true }}
-      className="w-full"
-    >
-      {products.map((product) => (
-        <SwiperSlide
-          key={product.id}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-1 max-w-7xl"
+    {products.length === 0 ? (
+      <h1 className="mt-10 text-center text-xl">
+        {" "}
+        ❌ No trending products available right now!!!
+      </h1>
+    ) : (
+      <>
+        <p className="my-5 text-center text-gray-500">
+          There are many variations of trending products available
+        </p>
+
+        <Swiper
+          // install Swiper modules
+          modules={[Autoplay, Navigation, Pagination]}
+          navigation
+          centeredSlides={false}
+          loop={true}
+          slidesPerView={4}
+          // autoplay={{
+          //   delay: 2500,
+          //   disableOnInteraction: false,
+          // }}
+          // pagination={{ clickable: true }}
+          className="w-full"
         >
-          <ProductCard key={product.id} product={product} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+          {products.map((product) => (
+            <SwiperSlide
+              key={product._id}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-1 max-w-7xl"
+            >
+              <ProductCard key={product._id} product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </>
+    )}
   </div>
 );
 

@@ -42,12 +42,12 @@ const AllEquipPage = () => {
   // ];
 
   const handleViewDetails = (id) => {
-    navigate(`/main/allEquipment/${id}`);
+    navigate(`/main/productDetails/${id}`);
   };
 
   return (
-    <div className="bg-gray-100 mx-auto p-6 max-w-7xl">
-      <h2 className="mb-6 font-bold text-2xl">Sports Equipment</h2>
+    <div className="bg-gray-100 mx-auto p-6 max-w-11/12">
+      <h2 className="mb-6 font-bold text-3xl text-center">Sports Equipment</h2>
       <table className="border-gray-200 bg-white shadow-md border rounded-lg min-w-full">
         <thead>
           <tr className="bg-gray-200">
@@ -62,7 +62,7 @@ const AllEquipPage = () => {
         <tbody>
           {equipmentData.map((equipment, index) => (
             <tr
-              key={equipment.id}
+              key={index}
               className={`border-t ${
                 index % 2 === 0 ? "bg-gray-50" : "bg-white"
               }`}

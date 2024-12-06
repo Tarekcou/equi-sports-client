@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "swiper/css";
+import { TbChartBarPopular } from "react-icons/tb";
 
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,52 +15,69 @@ import {
 } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { NavLink, useLoaderData } from "react-router-dom";
 const PopularCategories = () => {
+  const products = useLoaderData();
+  // console.log(products);
   const categories = [
     {
       id: 1,
       image: "https://www.rockstaracademy.com/lib/images/news/basketball.jpeg", // Replace with actual image URLs
       title: "BasketBall Training",
-      items: "6 Items",
+      category: "BusketBall",
     },
     {
       id: 2,
       image:
         "https://media.istockphoto.com/id/177427917/photo/close-up-of-red-cricket-ball-and-bat-sitting-on-grass.jpg?s=612x612&w=0&k=20&c=DcorerbBUeDNTfld3OclgHxCty4jih2yDCzipffX6zw=", // Replace with actual image URLs
       title: "Cricket Ball Playing",
-      items: "6 Items",
+      category: "Cricket",
     },
     {
       id: 3,
       image:
         "https://img.olympics.com/images/image/private/t_social_share_thumb/f_auto/primary/qjxgsf7pqdmyqzsptxju", // Replace with actual image URLs
       title: "FootBall Training",
-      items: "8 Items",
+      category: "Football",
     },
     {
       id: 4,
       image:
         "https://www.racquetpoint.com/cdn/shop/articles/what-is-badminton-racquet-point.jpg?v=1732071171", // Replace with actual image URLs
       title: "Batminton Classic",
-      items: "READ MORE",
+      category: "Batminton",
     },
     {
       id: 5,
       image:
         "https://cdn.britannica.com/95/190895-050-955A908C/volleyball-match-Italy-Russia-Milan-Volleyball-World.jpg", // Replace with actual image URLs
       title: "VolleyBall Classic",
-      items: "READ MORE",
+      category: "VolleyBall",
     },
   ];
 
+  // Count products in each category
+  const categoryCounts = products.reduce((acc, product) => {
+    acc[product.categoryName.toLowerCase()] =
+      (acc[product.categoryName.toLowerCase()] || 0) + 1;
+    return acc;
+  }, {});
+
   return (
     <>
-      <div className="bg-white py-12">
+      <div className="bg-white pt-10">
         {/* Section Title */}
         <div className="mb-8 text-center">
-          <h2 className="font-bold text-2xl md:text-3xl">Popular Categories</h2>
-          <p className="mt-2 text-gray-600">
-            There are many variations of passages of Lorem Ipsum available
+          <div className="flex justify-center items-center gap-4">
+            <TbChartBarPopular className="text-5xl text-green-500" />
+
+            <h2 className="font-bold text-xl md:text-3xl">
+              Popular Categories
+            </h2>
+          </div>
+
+          <p className="mt-2 text-gray-600 text-xl">
+            There are many variations of categories available
           </p>
         </div>
       </div>
@@ -78,33 +96,41 @@ const PopularCategories = () => {
         }}
         className=""
       >
-        {categories.map((category, index) => (
+        {categories.map((cate, index) => (
           <SwiperSlide
-            key={category.id}
+            key={cate.id}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-1 max-w-7xl"
           >
-            <div className="relative shadow-lg rounded-lg overflow-hidden group">
+            {/* <h1>{cate.category}</h1> */}
+            <NavLink
+              to={`/main/category/${cate.category}`}
+              className="relative shadow-lg rounded-lg overflow-hidden group"
+            >
               {/* Background Image */}
               <img
-                src={category.image}
-                alt={category.title}
+                src={cate.image}
+                alt={cate.title}
                 className="group-hover:scale-105 w-full h-60 transition-transform duration-300 object-cover"
               />
 
               {/* Overlay */}
               <div className="absolute inset-0 flex flex-col justify-end items-center bg-black bg-opacity-50 group-hover:bg-opacity-75 p-4 text-white transition-opacity duration-300">
                 {/* Title */}
-                <h3 className="font-bold text-lg">{category.title}</h3>
+                <h3 className="font-bold text-lg">{cate.title}</h3>
                 {/* Items */}
-                <p className="text-sm">{category.items}</p>
+                <p className="text-sm">
+                  {categoryCounts[cate.category.toLowerCase()]
+                    ? categoryCounts[cate.category.toLowerCase()]
+                    : 0}{" "}
+                  Product
+                </p>
                 {/* Optional Read More */}
-                {category.items === "READ MORE" && (
-                  <button className="bg-yellow-500 hover:bg-yellow-600 mt-2 px-4 py-2 rounded-md font-bold text-black transition">
-                    Read More
-                  </button>
-                )}
+
+                <button className="mt-2 px-4 py-2 rounded-md font-bold text-end text-white transition btn btn-outline btn-sm">
+                  Read More
+                </button>
               </div>
-            </div>
+            </NavLink>
           </SwiperSlide>
         ))}
       </Swiper>

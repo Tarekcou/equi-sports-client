@@ -1,4 +1,5 @@
 import React from "react";
+import { FaHandshake } from "react-icons/fa";
 
 const Features = () => {
   const features = [
@@ -23,7 +24,11 @@ const Features = () => {
   ];
 
   return (
-    <div className="mx-auto px-4 py-12 max-w-7xl">
+    <div className="mx-auto px-4 py-12 w-11/12">
+      <div className="flex justify-center items-center gap-3 text-center">
+        <FaHandshake className="text-6xl text-green-500" />
+        <h1 className="font-bold text-3xl text-center">Our Promises</h1>
+      </div>
       <div className="gap-8 grid grid-cols-1 md:grid-cols-3 text-center">
         {features.map((feature, index) => (
           <div

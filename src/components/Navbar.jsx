@@ -1,16 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-import { FaPerson } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
   const handleToggle = (e) => {
-    console.log(e);
+    // console.log(e);
     if (e.target.checked) {
       setTheme("dark");
     } else {
@@ -29,8 +27,6 @@ const Navbar = () => {
   // console.log(user);
   const [isHovered, setIsHovered] = useState(false);
   const handleLogOut = () => {
-    toast("Sign out..");
-
     logOut();
   };
 
@@ -75,12 +71,14 @@ const Navbar = () => {
           </button>
         </div>
       ) : (
+        // If no user is logged in
+
         <div className="flex justify-between items-center w-full">
           <div>
             <FaUserAlt className="text-white text-xl" />
           </div>
           <NavLink
-            to="/auth/login"
+            to="/main/auth/login"
             className="mx-3 rounded-md font-medium text-sm hover:text-blue-600"
           >
             <button className="py-2 btn btn-sm btn-success">Login</button>
@@ -90,7 +88,7 @@ const Navbar = () => {
     </>
   );
   const navMenu = (
-    <div className="flex justify-center gap-2">
+    <div className="flex lg:flex-row flex-col justify-center gap-2">
       <NavLink to="/" className="btn btn-sm">
         Home
       </NavLink>
@@ -98,11 +96,14 @@ const Navbar = () => {
         All Equipment
       </NavLink>
       {user ? (
-        <div className="flex gap-2">
+        <div className="flex lg:flex-row flex-col gap-2">
           <NavLink to="/main/addEquipment" className="btn btn-sm">
             Add Equipment
           </NavLink>
-          <NavLink to="/main/myEquipment" className="btn btn-sm">
+          <NavLink
+            to={`/main/myEquipment/${user.email}`}
+            className="btn btn-sm"
+          >
             My Equipment
           </NavLink>
         </div>
@@ -112,12 +113,16 @@ const Navbar = () => {
     </div>
   );
   return (
-    <div>
-      <div className="flex justify-between items-center bg-none mx-auto w-11/12 min-h-8">
+    <>
+      <div className="flex justify-between items-center bg-none mx-auto my-5 w-11/12 absolue">
         {/* left side */}
-        <div className="">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="lg:hidden btn btn-ghost">
+        <div className="flex">
+          <div className="block lg:!hidden dropdown">
+            <div
+              tabIndex={0}
+              role="button"
+              className="text-orange-500 btn btn-ghost"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-5 h-5"
@@ -135,32 +140,25 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="z-[1] bg-base-100 shadow mt-3 p-2 rounded-box w-52 dropdown-content menu menu-sm"
+              className="z-20 bg-base-100 shadow mt-3 p-2 rounded-box w-52 dropdown-content menu menu-sm"
             >
               {navMenu}
             </ul>
           </div>
-          <a className="text-xl btn btn-ghost">EquiSports</a>
+          <a className="text-orange-500 text-xl btn btn-ghost">EquiSports</a>
         </div>
         {/* middle area */}
 
-        <div className="invisible md:visible w-full">
+        <div className="md:!block !hidden">
           <ul className="w-full">{navMenu}</ul>
         </div>
         {/* right side */}
-        <div className="flex items-center">
-          {/* <div>
-            <NavLink to={"/login"} className="btn btn-sm">
-              Login
-            </NavLink>
-          </div> */}
+        <div className="flex justify-center items-center">
+          <div className="">{signInSignOutToggle}</div>
 
-          <div className="lg:flex space-x-4 lg:visible invisible">
-            {signInSignOutToggle}
-          </div>
           <div className="form-control">
             <label className="cursor-pointer label">
-              <span className="mx-1 label-text">
+              <span className="mx-1 text-blue-400 label-text">
                 {theme == "light" ? "Light " : "Dark "}
               </span>
               <input
@@ -172,8 +170,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
-    </div>
+    </>
   );
 };
 
