@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import MainLayout from "../layout/MainLayout";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
@@ -10,26 +10,42 @@ import FeatureProducts from "../components/FeatureProducts";
 import NewsletterSubscription from "../components/NewsletterSubscription";
 import CustomerFeedback from "../components/CustomerFeedBack";
 import { useLoaderData } from "react-router-dom";
+import Storm from "../components/Storm";
+import { AuthContext } from "../provider/AuthProvider";
+import Loading from "../components/Loading";
 
 const HomePage = () => {
   const products = useLoaderData();
   // console.log(products);
+  const { isLoading, setLoading } = useContext(AuthContext);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(true);
+  //   }, 1000);
+  //   setLoading(false);
+  // }, []);
   return (
     <div className="relative">
-      <div className="z-10 absolute w-full">
-        <Navbar />
-      </div>
-      <Hero />
-      <div className="min-h-screen">
-        <PopularCategories />
-        <TrendingProducts products={products} />
-        <Features />
-
-        <FeatureProducts products={products} />
-        <CustomerFeedback />
-        <NewsletterSubscription />
-      </div>
-      <Footer />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="z-10 absolute w-full">
+            <Navbar />
+          </div>
+          <Hero />
+          <div className="min-h-screen">
+            <PopularCategories />
+            <TrendingProducts products={products} />
+            <Features />
+            <Storm />
+            <FeatureProducts products={products} />
+            <CustomerFeedback />
+            <NewsletterSubscription />
+          </div>
+          <Footer />
+        </>
+      )}
     </div>
   );
 };

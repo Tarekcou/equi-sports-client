@@ -24,13 +24,13 @@ const NewsletterSubscription = () => {
             Subscribe to our latest newsletter to get news about special
             discounts and upcoming sales.
           </p>
-          <div className="flex sm:flex-row flex-col items-center gap-4">
+          <div className="flex sm:flex-row md:flex-col items-center gap-4 w-full">
             <input
               type="email"
               placeholder="Email"
-              className="flex-grow px-4 py-2 rounded-md w-full sm:w-auto text-black"
+              className="flex-grow px-4 py-2 rounded-md w-full sm:w-auto md:w-full text-black"
             />
-            <button className="bg-yellow-500 hover:bg-yellow-600 px-6 py-2 rounded-md font-bold text-white">
+            <button className="bg-yellow-500 hover:bg-yellow-600 px-6 py-2 rounded-md w-full font-bold text-white">
               SUBSCRIBE
             </button>
           </div>

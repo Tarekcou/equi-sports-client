@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "swiper/css";
 import { TbChartBarPopular } from "react-icons/tb";
 
@@ -63,9 +63,29 @@ const PopularCategories = () => {
     return acc;
   }, {});
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth); // Update the width state on window resize
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); //
+  const renderContent = () => {
+    if (windowWidth < 768) {
+      return 2; // For small screens
+    } else if (windowWidth < 1024) {
+      return 3; // For medium screens (tablets)
+    } else {
+      return 4; // For large screens (desktops)
+    }
+  };
+
   return (
     <>
-      <div className="bg-white pt-10">
+      <div className="pt-10">
         {/* Section Title */}
         <div className="mb-8 text-center">
           <div className="flex justify-center items-center gap-4">
@@ -76,7 +96,7 @@ const PopularCategories = () => {
             </h2>
           </div>
 
-          <p className="mt-2 text-gray-600 text-xl">
+          <p className="m-2 text-gray-600 text-xl">
             There are many variations of categories available
           </p>
         </div>
@@ -89,18 +109,15 @@ const PopularCategories = () => {
         navigation
         centeredSlides={false}
         loop={true}
-        slidesPerView={4}
+        slidesPerView={renderContent()}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-        className=""
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         {categories.map((cate, index) => (
-          <SwiperSlide
-            key={cate.id}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-1 max-w-7xl"
-          >
+          <SwiperSlide key={cate.id} className="px-1 max-w-10/12">
             {/* <h1>{cate.category}</h1> */}
             <NavLink
               to={`/main/category/${cate.category}`}

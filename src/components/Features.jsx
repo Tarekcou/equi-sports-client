@@ -1,25 +1,26 @@
 import React from "react";
 import { FaHandshake } from "react-icons/fa";
+import { CiDeliveryTruck } from "react-icons/ci";
 
 const Features = () => {
   const features = [
     {
-      icon: "🚀", // Replace this with an actual image/icon as needed
+      icon: <CiDeliveryTruck />, // Replace this with an actual image/icon as needed
       title: "Free Delivery",
       description:
-        "Lorem Ipsum is simply dummy text of the and typesetting industry.",
+        "We deliver free product up to 100kg. It is ensured your product will be safe and sound. just rely on us.",
     },
     {
       icon: "💰", // Replace this with an actual image/icon as needed
       title: "Money Guarantee",
       description:
-        "Lorem Ipsum is simply dummy text of the and typesetting industry.",
+        "Your money will be safe and sound. if product not choosable to you its cofirmed you will return your money back.",
     },
     {
       icon: "🎧", // Replace this with an actual image/icon as needed
       title: "Online Support",
       description:
-        "Lorem Ipsum is simply dummy text of the and typesetting industry.",
+        "Online support will be available for customers that  will receive  your product through   Our Website",
     },
   ];
 
@@ -27,7 +28,9 @@ const Features = () => {
     <div className="mx-auto px-4 py-12 w-11/12">
       <div className="flex justify-center items-center gap-3 text-center">
         <FaHandshake className="text-6xl text-green-500" />
-        <h1 className="font-bold text-3xl text-center">Our Promises</h1>
+        <h1 className="font-bold text-center text-xl md:text-3xl">
+          Our Promises
+        </h1>
       </div>
       <div className="gap-8 grid grid-cols-1 md:grid-cols-3 text-center">
         {features.map((feature, index) => (

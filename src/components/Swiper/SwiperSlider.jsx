@@ -25,31 +25,31 @@ import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
 
 export default () => {
-  const displayToast = () => {
-    toast("CLicked");
-  };
+  // const displayToast = () => {
+  //   toast("CLicked");
+  // };
 
   const sliderArray = [
     {
       id: 1,
-      img: img4,
-      title: "Sports Accessories",
+      img: "https://img.freepik.com/premium-photo/basketball-banner-background-basketball-banner-concept-with-copy-space-sport-balls-dark-background-mixed-media-illustration_1028938-113166.jpg",
+      title: "Elevate Your Game with Premium Basketball Gear",
       details:
-        "Our expert career counselors will help you develop your skills and knowledge to excel in your field.",
+        "Gear up for the court with our top-of-the-line basketball equipment. From durable basketballs to performance-enhancing shoes and supportive apparel, we have everything you need to improve your game and dominate the competition. Whether you're practicing your free throws or playing in the big league, our gear will help you perform at your best.",
     },
     {
       id: 2,
-      img: img2,
-      title: "Professional Development",
+      img: "https://t3.ftcdn.net/jpg/02/71/50/50/360_F_271505083_nAvK5RA4G4PaP4XGzPmzFPA8BRKk4yVh.jpg",
+      title: "Score Big with High-Quality Football Equipment",
       details:
-        "Our team of experts will help you develop your skills and knowledge to excel in your field.",
+        "Take your game to the next level with our football gear, designed for both amateur and professional players. Our collection includes protective pads, footballs, cleats, and training accessories that enhance performance and keep you safe on the field. Gear up with trusted brands and hit the field with confidence!",
     },
     {
       id: 3,
-      img: img3,
-      title: "Professional Development",
+      img: "https://www.shutterstock.com/image-photo/tennis-banner-sport-composition-yellow-260nw-2099340745.jpg",
+      title: "Ace Your Match with Top Tennis Gear",
       details:
-        "Our team of experts will help you develop your skills and knowledge to excel in your field.",
+        "Whether you're a beginner or a seasoned pro, our tennis equipment has you covered. Choose from a variety of high-performance rackets, comfortable footwear, and accessories to help you improve your game. Serve, volley, and smash your way to victory with gear that’s as fast as your serve.",
     },
   ];
   return (
@@ -65,29 +65,32 @@ export default () => {
         //   disableOnInteraction: false,
         // }}
         pagination={{ dynamicBullets: true, clickable: true }}
-        className=""
+        className="flex items-center"
       >
-        {sliderArray.map((slide) => (
+        {sliderArray.map((slide, index) => (
           <SwiperSlide
             key={slide.id}
-            className="relative flex flex-col justify-between items-start gap-5 bg-cover bg-no-repeat min-h-screen text-white"
+            className={`relative flex bg-cover bg-no-repeat min-h-screen items-center  p-10 justify-center lg:${
+              index == 0 ? "!justify-start" : "!justify-end"
+            } `}
             style={{
               backgroundImage: `url(${slide.img})`,
             }}
           >
-            <div className="flex flex-col justify-center items-center gap-16 w-10/12 lg:w-6/12 text-center text-white">
-              <h1 className="font-bold text-2xl text-white md:text-6xl">
+            <div
+              className={`flex flex-col justify-end  gap-8 w-10/12 lg:w-8/12  text-white  items-center lg:p-10 pt-10`}
+            >
+              <h1 className="font-bold text-3xl text-white md:text-6xl">
                 {slide.title}
               </h1>
-              <p className="text-xs text-yellow-600 lg:text-xl">
+              <p className="text-xs text-yellow-600 lg:text-base">
                 {slide.details}
               </p>
               <Link
-                to={"/contact"}
-                onClick={displayToast}
+                to={"/main/allfeatureproducts"}
                 className="w-1/2 btn btn-neutral"
               >
-                Join Now
+                Shop Now →
               </Link>
             </div>
           </SwiperSlide>

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const Loading = () => {
   return (
-    <div>
-      Loading spinner
+    <div className="mx-auto h-screen min-h-screen text-center">
+      <span className="loading loading-dots loading-lg"></span>
     </div>
   );
 };

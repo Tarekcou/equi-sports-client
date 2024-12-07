@@ -37,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/main/productDetails/:id",
-        element: <ProductDetailsPage />,
+        element: (
+          <PrivateRouter>
+            <ProductDetailsPage />
+          </PrivateRouter>
+        ),
         loader: ({ params }) => {
           console.log(params.id);
           return fetch(`http://localhost:5005/products/${params.id}`);
@@ -121,6 +125,10 @@ const router = createBrowserRouter([
         element: <ForgotPasswordPage />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <h1 className="my-20 text-3xl text-center">Page Not Found</h1>,
   },
 ]);
 export default router;

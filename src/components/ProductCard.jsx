@@ -16,10 +16,10 @@ import {
 import { NavLink } from "react-router-dom";
 const ProductCard = ({ product }) => {
   return (
-    <div className="relative shadow-md border rounded-lg min-w-64 text-center group">
-      {product?.discount && (
+    <div className="relative shadow-md border rounded-lg min-w-44 md:min-w-64 text-center group">
+      {product?.discountPercentage && (
         <div className="top-2 left-2 absolute bg-red-500 px-2 py-1 rounded font-bold text-white text-xs">
-          -{product.discount}%
+          -{product.discountPercentage}%
         </div>
       )}
 

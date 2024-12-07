@@ -8,8 +8,8 @@ const Navbar = () => {
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
   const handleToggle = (e) => {
-    // console.log(e);
-    if (e.target.checked) {
+    console.log(e);
+    if (e.target.checked && localStorage.getItem("theme") == "light") {
       setTheme("dark");
     } else {
       setTheme("light");
@@ -20,7 +20,7 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
     const localtheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localtheme);
-  });
+  }, [theme]);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logOut, imageKey } = useContext(AuthContext);
@@ -110,6 +110,7 @@ const Navbar = () => {
       ) : (
         ""
       )}
+      <div className="block md:!hidden">{signInSignOutToggle}</div>
     </div>
   );
   return (
@@ -145,16 +146,18 @@ const Navbar = () => {
               {navMenu}
             </ul>
           </div>
-          <a className="text-orange-500 text-xl btn btn-ghost">EquiSports</a>
+          <a className="border font-bold text-2xl text-orange-500 btn btn-ghost">
+            EquiSports
+          </a>
         </div>
         {/* middle area */}
 
-        <div className="md:!block !hidden">
+        <div className="lg:!block !hidden">
           <ul className="w-full">{navMenu}</ul>
         </div>
         {/* right side */}
         <div className="flex justify-center items-center">
-          <div className="">{signInSignOutToggle}</div>
+          <div className="md:!block hidden">{signInSignOutToggle}</div>
 
           <div className="form-control">
             <label className="cursor-pointer label">

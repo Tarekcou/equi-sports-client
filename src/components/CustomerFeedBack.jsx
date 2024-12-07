@@ -44,7 +44,7 @@ const CustomerFeedback = () => {
   ];
 
   return (
-    <div className="my-10">
+    <div className="shadow-md mx-auto my-10 py-10 border w-11/12">
       <div className="flex justify-center items-center gap-2">
         <VscFeedback className="text-5xl text-green-500" />
         <h2 className="font-bold text-3xl text-center">Customer Feedback</h2>
