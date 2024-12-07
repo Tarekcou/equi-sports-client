@@ -24,7 +24,7 @@ const PopularCategories = () => {
       id: 1,
       image: "https://www.rockstaracademy.com/lib/images/news/basketball.jpeg", // Replace with actual image URLs
       title: "BasketBall Training",
-      category: "BusketBall",
+      category: "BasketBall",
     },
     {
       id: 2,
@@ -144,7 +144,7 @@ const PopularCategories = () => {
                 {/* Optional Read More */}
 
                 <button className="mt-2 px-4 py-2 rounded-md font-bold text-end text-white transition btn btn-outline btn-sm">
-                  Read More
+                  View Details
                 </button>
               </div>
             </NavLink>

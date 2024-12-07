@@ -66,9 +66,9 @@ const CategoryWiseProducts = () => {
           <img className="max-w-64" src={notAvailable} alt="Not Availble" />
         </div>
       ) : (
-        <div className="flex gap-4 p-6">
+        <div className="flex md:flex-row flex-col gap-4 p-6 w-full">
           {/* Filter Section */}
-          <div className="bg-gray-100 shadow-md p-4 rounded-lg w-1/4">
+          <div className="bg-gray-100 shadow-md p-4 rounded-lg w-full md:w-1/4">
             <h2 className="mb-4 font-bold text-xl">Filters</h2>
 
             {/* Price Range Filter */}
