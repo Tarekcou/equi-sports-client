@@ -38,7 +38,7 @@ const TrendingProducts = ({ products }) => {
       return 4; // For large screens (desktops)
     }
   };
-  console.log(windowWidth, renderContent());
+  // console.log(windowWidth, renderContent());
 
   return (
     <div className="shadow-md mx-auto mt-5 py-8">

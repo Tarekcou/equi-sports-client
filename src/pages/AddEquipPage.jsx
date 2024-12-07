@@ -6,7 +6,7 @@ import { useLoaderData } from "react-router-dom";
 const AddEquipPage = ({ userEmail }) => {
   const { user } = useContext(AuthContext);
   const product = useLoaderData();
-  console.log(product);
+  // console.log(product);
   const [formData, setFormData] = useState({
     name: user.displayName,
     email: user.email,
