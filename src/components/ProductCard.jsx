@@ -1,6 +1,7 @@
 import React from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "aos/dist/aos.css";
 
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -16,7 +17,10 @@ import {
 import { NavLink } from "react-router-dom";
 const ProductCard = ({ product }) => {
   return (
-    <div className="relative shadow-md border rounded-lg min-w-44 md:min-w-64 text-center group">
+    <div
+      data-aos="fade-zoom-in"
+      className="relative shadow-md border rounded-lg min-w-44 md:min-w-64 text-center group"
+    >
       {product?.discountPercentage && (
         <div className="top-2 left-2 absolute bg-red-500 px-2 py-1 rounded font-bold text-white text-xs">
           -{product.discountPercentage}%

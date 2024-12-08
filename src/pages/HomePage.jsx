@@ -23,7 +23,7 @@ const HomePage = () => {
   const { isLoading, setLoading } = useContext(AuthContext);
   useEffect(() => {
     setLoading(true);
-
+    AOS.init();
     setTimeout(() => {
       setLoading(false);
     }, 500);
