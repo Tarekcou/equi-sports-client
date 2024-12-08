@@ -23,7 +23,7 @@ const ProductDetailsPage = () => {
   const { isLoading, setLoading } = useContext(AuthContext);
   // console.log(product);
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
 
     setTimeout(() => {
       setLoading(false);

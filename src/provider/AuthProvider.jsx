@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    toast.loading("Sign out Processing..");
+    // toast.loading("Sign out Processing..");
 
     setLoading(true);
     signOut(auth)
@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
         setUser(null);
         setLoading(false);
         // navigate("/");
-        toast.error("Sign out!");
+        toast.error("Signed out!");
 
         // console.log("sign Out", auth);
       })
