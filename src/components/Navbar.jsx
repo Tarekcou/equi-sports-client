@@ -116,13 +116,6 @@ const Navbar = () => {
       <NavLink to={`/main/contact`} className="btn btn-sm">
         Contact
       </NavLink>
-
-      <div className="block md:!hidden">
-        {signInSignOutToggle}
-        <div>
-          <FaCartPlus className="text-3xl" />
-        </div>
-      </div>
     </div>
   );
   return (
