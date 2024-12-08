@@ -137,9 +137,8 @@ const PopularCategories = () => {
                 {/* Items */}
                 <p className="text-sm">
                   {categoryCounts[cate.category.toLowerCase()]
-                    ? categoryCounts[cate.category.toLowerCase()]
-                    : 0}{" "}
-                  Product
+                    ? categoryCounts[cate.category.toLowerCase()] + " Products"
+                    : "0 Product"}{" "}
                 </p>
                 {/* Optional Read More */}
 

@@ -15,7 +15,7 @@ const MyEquipPage = () => {
   const navigate = useNavigate();
   const { isLoading, setLoading } = useContext(AuthContext);
   // useEffect(() => {
-  //   fetch(`http://localhost:5005/myEquipment/sitarek77@gmail.com`)
+  //   fetch(`https://equi-sports-server-iota.vercel.app/myEquipment/sitarek77@gmail.com`)
   //     .then((res) => res.json())
   //     .then((data) => setProducts(data));
   // }, []);
@@ -30,7 +30,7 @@ const MyEquipPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5005/product/${id}`, {
+        fetch(`https://equi-sports-server-iota.vercel.app/product/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

@@ -95,6 +95,7 @@ const Navbar = () => {
       <NavLink to="/main/allEquipment" className="btn btn-sm">
         All Equipment
       </NavLink>
+
       {user ? (
         <div className="flex lg:flex-row flex-col gap-2">
           <NavLink to="/main/addEquipment" className="btn btn-sm">
@@ -110,6 +111,9 @@ const Navbar = () => {
       ) : (
         ""
       )}
+      <NavLink to={`/main/contact`} className="btn btn-sm">
+        Contact
+      </NavLink>
       <div className="block md:!hidden">{signInSignOutToggle}</div>
     </div>
   );

@@ -3,7 +3,7 @@ import React from "react";
 const NewsletterSubscription = () => {
   return (
     <div className="relative bg-blue-600 text-white">
-      <div className="flex md:flex-row flex-col items-center mx-auto px-4 py-10 max-w-7xl">
+      <div className="flex md:flex-row flex-col items-center mx-auto px-4 py-5 max-w-7xl">
         {/* Image Section */}
         <div className="md:w-1/2 max-h-72 overflow-hidden">
           <img
@@ -16,7 +16,7 @@ const NewsletterSubscription = () => {
         </div>
 
         {/* Text and Subscription Section */}
-        <div className="mt-8 md:mt-0 md:pl-10 md:w-1/2 text-center md:text-left">
+        <div className="mt-8 md:mt-0 px-16 md:pl-10 md:w-1/2 text-center md:text-left">
           <h2 className="mb-4 font-bold text-3xl">
             SUBSCRIBE TO OUR NEWSLETTER
           </h2>
@@ -24,7 +24,7 @@ const NewsletterSubscription = () => {
             Subscribe to our latest newsletter to get news about special
             discounts and upcoming sales.
           </p>
-          <div className="flex sm:flex-row md:flex-col items-center gap-4 w-full">
+          <div className="flex md:flex-row flex-col items-center gap-4 w-full">
             <input
               type="email"
               placeholder="Email"

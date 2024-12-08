@@ -48,7 +48,7 @@ const AddEquipPage = ({ userEmail }) => {
     calculateDiscount();
     console.log(formData);
 
-    fetch("http://localhost:5005/add-product", {
+    fetch("https://equi-sports-server-iota.vercel.app/add-product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const AddEquipPage = ({ userEmail }) => {
     calculateDiscount();
     console.log(id);
     // API call to add item (example endpoint)
-    fetch(`http://localhost:5005/product/${id}`, {
+    fetch(`https://equi-sports-server-iota.vercel.app/product/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

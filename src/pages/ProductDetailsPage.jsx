@@ -24,7 +24,7 @@ const ProductDetailsPage = () => {
   console.log(product);
   useEffect(() => {
     // setLoading(true);
-    fetch("http://localhost:5005/products")
+    fetch("https://equi-sports-server-iota.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

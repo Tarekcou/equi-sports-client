@@ -13,12 +13,13 @@ import PrivateRouter from "./PrivateRouter";
 import AllFeatureProducts from "../pages/AllFeatureProducts";
 import CategoryWiseProducts from "../pages/CategoryWiseProducts";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
+import ContactPage from "../pages/ContactPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    loader: () => fetch("http://localhost:5005/products"),
+    loader: () => fetch("https://equi-sports-server-iota.vercel.app/products"),
   },
   {
     path: "/main",
@@ -28,12 +29,14 @@ const router = createBrowserRouter([
       {
         path: "/main/allEquipment",
         element: <AllEquipPage />,
-        loader: () => fetch("http://localhost:5005/products"),
+        loader: () =>
+          fetch("https://equi-sports-server-iota.vercel.app/products"),
       },
       {
         path: "/main/AllFeatureProducts",
         element: <AllFeatureProducts />,
-        loader: () => fetch("http://localhost:5005/products"),
+        loader: () =>
+          fetch("https://equi-sports-server-iota.vercel.app/products"),
       },
       {
         path: "/main/productDetails/:id",
@@ -44,7 +47,9 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) => {
           console.log(params.id);
-          return fetch(`http://localhost:5005/products/${params.id}`);
+          return fetch(
+            `https://equi-sports-server-iota.vercel.app/products/${params.id}`
+          );
         },
       },
       {
@@ -54,7 +59,7 @@ const router = createBrowserRouter([
           const categoryName = params.categoryName;
           console.log(categoryName);
 
-          const link = `http://localhost:5005/category/${categoryName}`;
+          const link = `https://equi-sports-server-iota.vercel.app/category/${categoryName}`;
           console.log(link);
           return fetch(link);
         },
@@ -78,7 +83,7 @@ const router = createBrowserRouter([
           // console.log(params.id);
           if (params?.id) {
             const res = await fetch(
-              `http://localhost:5005/products/${params.id}`
+              `https://equi-sports-server-iota.vercel.app/products/${params.id}`
             );
             const data = await res.json();
             console.log(data);
@@ -96,7 +101,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           console.log(params.email);
           const res = await fetch(
-            `http://localhost:5005/myEquipment/${params.email}`
+            `https://equi-sports-server-iota.vercel.app/myEquipment/${params.email}`
           );
           const data = await res.json();
           console.log(data);
@@ -123,6 +128,10 @@ const router = createBrowserRouter([
       {
         path: "/main/auth/forgot-password",
         element: <ForgotPasswordPage />,
+      },
+      {
+        path: "/main/contact",
+        element: <ContactPage />,
       },
     ],
   },
