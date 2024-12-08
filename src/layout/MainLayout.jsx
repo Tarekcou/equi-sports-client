@@ -4,7 +4,8 @@ import Footer from "../components/Footer";
 import { Outlet, useLocation } from "react-router-dom";
 import NewsletterSubscription from "../components/NewsletterSubscription";
 import { Helmet } from "react-helmet";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const MainLayout = ({ children }) => {
   const location = useLocation();
   // console.log(location, location.pathname.split("/")[2]);

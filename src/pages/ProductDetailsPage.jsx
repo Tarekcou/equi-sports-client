@@ -21,15 +21,22 @@ const ProductDetailsPage = () => {
   const [products, setProducts] = useState([]);
   const product = useLoaderData();
   const { isLoading, setLoading } = useContext(AuthContext);
-  console.log(product);
+  // console.log(product);
+  useEffect(() => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
   useEffect(() => {
     // setLoading(true);
     fetch("https://equi-sports-server-iota.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
-        console.log(products);
-        setLoading(false);
+        // console.log(products);
+        // setLoading(false);
       });
   }, []);
   const {

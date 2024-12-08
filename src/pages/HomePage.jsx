@@ -14,18 +14,20 @@ import Storm from "../components/Storm";
 import { AuthContext } from "../provider/AuthProvider";
 import Loading from "../components/Loading";
 import { Helmet } from "react-helmet";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const HomePage = () => {
   const location = useLocation();
   const products = useLoaderData();
   // console.log(products);
   const { isLoading, setLoading } = useContext(AuthContext);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoading(true);
-  //   }, 1000);
-  //   setLoading(false);
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }, []);
   return (
     <div className="relative">
       {isLoading ? (

@@ -14,6 +14,13 @@ const MyEquipPage = () => {
   // console.log(products);
   const navigate = useNavigate();
   const { isLoading, setLoading } = useContext(AuthContext);
+  useEffect(() => {
+    // setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }, []);
   // useEffect(() => {
   //   fetch(`https://equi-sports-server-iota.vercel.app/myEquipment/sitarek77@gmail.com`)
   //     .then((res) => res.json())

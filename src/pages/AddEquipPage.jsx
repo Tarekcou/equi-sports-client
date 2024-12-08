@@ -4,7 +4,8 @@ import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 
 const AddEquipPage = ({ userEmail }) => {
-  const { user } = useContext(AuthContext);
+  const { user, isLoading, setLoading } = useContext(AuthContext);
+
   const product = useLoaderData();
   // console.log(product);
   const [formData, setFormData] = useState({
