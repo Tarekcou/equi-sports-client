@@ -20,8 +20,30 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [imageKey, setimageKey] = useState(1);
   const provider = new GoogleAuthProvider();
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
-  // const navigate = useNavigate();
+  // Save the cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    // console.log(cart);
+  }, [cart]);
+
+  // Function to add an item to the cart
+  const addItemToCart = (item) => {
+    setCart((prevCart) => [...prevCart, item]);
+  };
+
+  // Function to remove an item from the cart
+  const removeItemFromCart = (itemId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
+  };
+  const emptyCart = () => {
+    setCart([]);
+    toast.success("cart is empty");
+  };
 
   const registerWithEmail = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -50,7 +72,7 @@ const AuthProvider = ({ children }) => {
       .catch((error) => {
         // An error happened.
         toast.error("Something went wrong" + error);
-        console.log(error);
+        // console.log(error);
 
         setLoading(false);
       });
@@ -114,6 +136,10 @@ const AuthProvider = ({ children }) => {
     passwordReset,
     imageKey,
     setimageKey,
+    addItemToCart,
+    cart,
+    setCart,
+    emptyCart,
   };
   return (
     <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>

@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaUserAlt } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logOut, imageKey, cart } = useContext(AuthContext);
+  const [isHovered, setIsHovered] = useState(false);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -17,15 +21,13 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    // console.log(cart);
+
     localStorage.setItem("theme", theme);
     const localtheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localtheme);
   }, [theme]);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logOut, imageKey } = useContext(AuthContext);
-  // console.log(user);
-  const [isHovered, setIsHovered] = useState(false);
   const handleLogOut = () => {
     logOut();
   };
@@ -114,7 +116,13 @@ const Navbar = () => {
       <NavLink to={`/main/contact`} className="btn btn-sm">
         Contact
       </NavLink>
-      <div className="block md:!hidden">{signInSignOutToggle}</div>
+
+      <div className="block md:!hidden">
+        {signInSignOutToggle}
+        <div>
+          <FaCartPlus className="text-3xl" />
+        </div>
+      </div>
     </div>
   );
   return (
@@ -160,9 +168,14 @@ const Navbar = () => {
           <ul className="w-full">{navMenu}</ul>
         </div>
         {/* right side */}
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center gap-2">
           <div className="md:!block hidden">{signInSignOutToggle}</div>
-
+          <Link to={"/main/checkOut"} className="relative">
+            <p className="-top-2 -right-2 absolute font-bold text-yellow-500">
+              {cart.length}{" "}
+            </p>
+            <FaCartPlus className="text-3xl text-green-500" />
+          </Link>
           <div className="form-control">
             <label className="cursor-pointer label">
               <span className="mx-1 text-blue-400 label-text">

@@ -47,7 +47,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) => {
-          console.log(params.id);
+          // console.log(params.id);
           return fetch(
             `https://equi-sports-server-iota.vercel.app/products/${params.id}`
           );
@@ -73,8 +73,9 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+
       {
-        path: "/main/addToCart",
+        path: "/main/checkOut",
         element: (
           <PrivateRouter>
             <CheckoutPage />

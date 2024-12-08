@@ -18,7 +18,7 @@ import { NavLink } from "react-router-dom";
 const ProductCard = ({ product }) => {
   return (
     <div
-      data-aos="fade-zoom-in"
+      data-aos="fade-ease-in"
       className="relative shadow-md border rounded-lg min-w-44 md:min-w-64 text-center group"
     >
       {product?.discountPercentage && (

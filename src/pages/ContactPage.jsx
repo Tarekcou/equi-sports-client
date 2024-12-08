@@ -48,7 +48,7 @@ const ContactPage = () => {
           </form>
         </div>
         {/* Right: Get in Touch */}
-        <div className="flex flex-col justify-center items-center bg-gray-300 p-8 w-1/2 text-black">
+        <div className="flex flex-col justify-center items-center bg-gray-300 p-8 w-full lg:w-1/2 text-black">
           <h2 className="mb-4 font-bold text-2xl">Get in Touch</h2>
           <p className="text-center">
             Feel free to reach out to us for any inquiries or questions. We're

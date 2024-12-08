@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 function CheckoutPage() {
+  const { cart, setCart, emptyCart, removeItemFromCart } =
+    useContext(AuthContext);
+  // const { cartItems, setCartItems } = useState([]);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -19,10 +23,77 @@ function CheckoutPage() {
     e.preventDefault();
     console.log("Form submitted: ", formData);
   };
+  const [cartItems, setCartItems] = useState([
+    { id: 1, name: "Football Shoes", price: 10, quantity: 2 },
+    { id: 2, name: "Batminton bal", price: 20, quantity: 1 },
+    { id: 3, name: "Cricket Stamp", price: 15, quantity: 3 },
+  ]);
+
+  // Calculate total cost
+  const totalCost = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  // const [cout, setCount] = useState();
+  // const countOccurrences = cart.reduce((acc, item) => {
+  //   acc[item] = (acc[item] || 0) + 1;
+  //   console.log(acc);
+  //   setCount(acc);
+  //   return acc;
+  // }, {});
 
   return (
-    <div className="flex justify-center items-center bg-gray-100 p-4 min-h-screen">
-      <div className="bg-white shadow-md p-6 rounded-lg w-full max-w-lg">
+    <div className="flex flex-col justify-center items-center bg-gray-100 mx-auto p-4 w-8/12 min-h-screen">
+      {/* cart item table */}
+      <div className="mx-auto mt-10 w-full">
+        <button onClick={() => emptyCart()} className="btn btn-sm btn-warning">
+          clear cart
+        </button>
+        <h1 className="mb-5 font-bold text-2xl">Shopping Cart</h1>
+        <table className="border-collapse border-gray-300 border w-full">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border-gray-300 p-2 border text-left">Item</th>
+              <th className="text-right border-gray-300 p-2 border">Price</th>
+              <th className="text-right border-gray-300 p-2 border">
+                Quantity
+              </th>
+              <th className="text-right border-gray-300 p-2 border">
+                Subtotal
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems.map((item) => (
+              <tr key={item.id} className="hover:bg-gray-50">
+                <td className="border-gray-300 p-2 border">{item.name}</td>
+                <td className="text-right border-gray-300 p-2 border">
+                  ${item.price.toFixed(2)}
+                </td>
+                <td className="text-right border-gray-300 p-2 border">
+                  {item.quantity}
+                </td>
+                <td className="text-right border-gray-300 p-2 border">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr className="bg-gray-200 font-bold">
+              <td className="border-gray-300 p-2 border" colSpan="3">
+                Total
+              </td>
+              <td className="text-right border-gray-300 p-2 border">
+                ${totalCost}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      {/* checkout form */}
+      <div className="bg-white shadow-md p-6 rounded-lg w-full">
         <h2 className="mb-4 font-bold text-2xl">Checkout</h2>
         <form onSubmit={handleSubmit}>
           {/* Personal Details */}

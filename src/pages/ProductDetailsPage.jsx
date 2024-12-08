@@ -20,7 +20,7 @@ import { AuthContext } from "../provider/AuthProvider";
 const ProductDetailsPage = () => {
   const [products, setProducts] = useState([]);
   const product = useLoaderData();
-  const { isLoading, setLoading } = useContext(AuthContext);
+  const { isLoading, setLoading, addItemToCart } = useContext(AuthContext);
   // console.log(product);
   useEffect(() => {
     // setLoading(true);
@@ -40,6 +40,7 @@ const ProductDetailsPage = () => {
       });
   }, []);
   const {
+    _id,
     name,
     email,
     itemName,
@@ -146,12 +147,15 @@ const ProductDetailsPage = () => {
                 {/* Add to Cart Section */}
                 <div className="flex items-center space-x-4 mb-6">
                   <NavLink
-                    to={"/main/addToCart"}
+                    onClick={() => addItemToCart(product)}
                     className="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded font-bold text-white"
                   >
                     Add to Cart
                   </NavLink>
-                  <NavLink className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded font-bold text-white">
+                  <NavLink
+                    to={"/main/checkout"}
+                    className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded font-bold text-white"
+                  >
                     Buy It Now
                   </NavLink>
                 </div>
