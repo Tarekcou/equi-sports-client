@@ -43,7 +43,7 @@ function CheckoutPage() {
   // }, {});
 
   return (
-    <div className="flex flex-col justify-center items-center bg-gray-100 mx-auto p-4 w-8/12 min-h-screen">
+    <div className="flex flex-col justify-center items-center bg-gray-100 mx-auto p-4 w-11/12 lg:w-8/12 min-h-screen">
       {/* cart item table */}
       <div className="mx-auto mt-10 w-full">
         <button onClick={() => emptyCart()} className="btn btn-sm btn-warning">
