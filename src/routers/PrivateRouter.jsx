@@ -9,7 +9,7 @@ const PrivateRouter = ({ children }) => {
   // console.log(key)
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   if (isLoading) return <Loading />;
   if (user && user.email) return children;
 

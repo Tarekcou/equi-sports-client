@@ -14,6 +14,7 @@ import AllFeatureProducts from "../pages/AllFeatureProducts";
 import CategoryWiseProducts from "../pages/CategoryWiseProducts";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
 import ContactPage from "../pages/ContactPage";
+import CheckoutPage from "../pages/CheckoutPage";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <AddEquipPage />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/main/addToCart",
+        element: (
+          <PrivateRouter>
+            <CheckoutPage />
           </PrivateRouter>
         ),
       },

@@ -9,12 +9,14 @@ import TrendingProducts from "../components/TrendingProducts";
 import FeatureProducts from "../components/FeatureProducts";
 import NewsletterSubscription from "../components/NewsletterSubscription";
 import CustomerFeedback from "../components/CustomerFeedBack";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import Storm from "../components/Storm";
 import { AuthContext } from "../provider/AuthProvider";
 import Loading from "../components/Loading";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
+  const location = useLocation();
   const products = useLoaderData();
   // console.log(products);
   const { isLoading, setLoading } = useContext(AuthContext);
@@ -44,6 +46,9 @@ const HomePage = () => {
             <NewsletterSubscription />
           </div>
           <Footer />
+          <Helmet>
+            <title>{location.pathname.substring(1)}</title>
+          </Helmet>
         </>
       )}
     </div>

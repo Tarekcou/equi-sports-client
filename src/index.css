@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 a.active {
-  background-color: rgb(192, 219, 242);
+  background-color: rgb(156, 202, 243);
 }
 .swiper-button-prev {
   color: red;

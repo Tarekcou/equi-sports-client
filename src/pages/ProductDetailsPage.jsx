@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 import "swiper/css";
 
 import "swiper/css/navigation";
@@ -138,12 +138,15 @@ const ProductDetailsPage = () => {
 
                 {/* Add to Cart Section */}
                 <div className="flex items-center space-x-4 mb-6">
-                  <button className="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded font-bold text-white">
+                  <NavLink
+                    to={"/main/addToCart"}
+                    className="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded font-bold text-white"
+                  >
                     Add to Cart
-                  </button>
-                  <button className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded font-bold text-white">
+                  </NavLink>
+                  <NavLink className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded font-bold text-white">
                     Buy It Now
-                  </button>
+                  </NavLink>
                 </div>
 
                 {/* Additional Info */}

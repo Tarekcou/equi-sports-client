@@ -6,7 +6,7 @@ const ContactPage = () => {
       {/* Top Section */}
       <div className="flex md:flex-row flex-col flex-grow">
         {/* Left: Contact Form */}
-        <div className="bg-gray-100 p-8 w-1/2">
+        <div className="bg-gray-100 p-8 w-full lg:w-1/2">
           <h2 className="mb-4 font-bold text-2xl">Contact Us</h2>
           <form className="space-y-4">
             <div>
@@ -48,7 +48,7 @@ const ContactPage = () => {
           </form>
         </div>
         {/* Right: Get in Touch */}
-        <div className="flex flex-col justify-center items-center bg-indigo-600 p-8 w-1/2 text-white">
+        <div className="flex flex-col justify-center items-center bg-gray-300 p-8 w-1/2 text-black">
           <h2 className="mb-4 font-bold text-2xl">Get in Touch</h2>
           <p className="text-center">
             Feel free to reach out to us for any inquiries or questions. We're
